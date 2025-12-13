@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/1584795214_217301696_223132457.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_3394500337_2271914378.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_887093202_3469931117.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_2826222438_2512902547.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_2318836581_4248788454.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_213254584_722590363.mp4'
+file 'file:/home/aahrav/manim/media/videos/first/480p15/partial_movie_files/CapsuleScene/4072820271_2844360058_1583495282.mp4'
