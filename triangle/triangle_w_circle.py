@@ -87,8 +87,14 @@ class TriangleScene(Scene):
             p2 = p0 - h * perp
     
             return [p1, p2]
-    
-        p12 = circle_circle_intersections(centers[0],radii[0],centers[1],radii[1])
+        n = len(circles)
+        intersections = {}
+        for i in range(n):
+            j = (i + 1) % n
+            pts = circle_circle_intersections(centers[i], radii[i], centers[j], radii[j])
+            intersections[(i, j)] = pts
+
+        # p12 = circle_circle_intersections(centers[0],radii[0],centers[1],radii[1])
         # checking if g is calculated correct or not
         dot = Dot(point=g,radius=0.1,color=ORANGE)     
         self.add(dot)
@@ -100,6 +106,8 @@ class TriangleScene(Scene):
         # debug text
         text = Text(f"({g[0]:.2f},{g[1]:.2f},{g[2]:.2f})",font_size=20).to_corner(UR)
         # text = Text(f"{p12[0]}",font_size=20).to_corner(UR)
+        
+        
         self.play(FadeIn(text))
         self.play(Create(circle1), Create(circle2), Create(circle3))
         self.play(Create(arrows_from_centroid))
