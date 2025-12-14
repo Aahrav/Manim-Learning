@@ -106,6 +106,16 @@ class TriangleScene(Scene):
         # debug text
         text = Text(f"({g[0]:.2f},{g[1]:.2f},{g[2]:.2f})",font_size=20).to_corner(UR)
         # text = Text(f"{p12[0]}",font_size=20).to_corner(UR)
+        # display intersection points
+        # intersection_dots = VGroup()
+
+        # for (i, j), pts in intersections.items():
+        #     for p in pts:
+        #         intersection_dots.add(
+        #             Dot(point=p, radius=0.08, color=WHITE)
+        #         )
+
+        # self.play(FadeIn(intersection_dots))
         
         
         self.play(FadeIn(text))
