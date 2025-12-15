@@ -4,6 +4,7 @@ import numpy as np
 class TriangleScene(Scene):
     def construct(self):
         # create circles
+        n = 3
         circle1 = Circle(radius=3, color=RED).shift(LEFT * 2).shift(DOWN * 0.8)
         circle2 = Circle(radius=3, color=BLUE).shift(RIGHT * 2).shift(DOWN * 0.8)
         circle3 = Circle(radius=3, color=YELLOW)
@@ -114,13 +115,21 @@ class TriangleScene(Scene):
         #         intersection_dots.add(
         #             Dot(point=p, radius=0.08, color=WHITE)
         #         )
+        # intersection prev and next
+        intersection_prev = [
+         intersections[((i - 1) % n, i)]
+                for i in range(n)
+        ]
 
-        # self.play(FadeIn(intersection_dots))
-        
-        
+        intersection_next = [
+    intersections[(i, (i + 1) % n)]
+                for i in range(n)
+        ]
+        self.play(FadeIn(intersection_dots))   
         self.play(FadeIn(text))
         self.play(Create(circle1), Create(circle2), Create(circle3))
         self.play(Create(arrows_from_centroid))
         self.play(FadeIn(labels), FadeIn(area_text))
+        
         self.wait(1)
     
