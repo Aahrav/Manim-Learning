@@ -125,7 +125,7 @@ class TriangleScene(Scene):
     intersections[(i, (i + 1) % n)]
                 for i in range(n)
         ]
-        self.play(FadeIn(intersection_dots))   
+        # self.play(FadeIn(intersection_dots))   
         self.play(FadeIn(text))
         self.play(Create(circle1), Create(circle2), Create(circle3))
         self.play(Create(arrows_from_centroid))
