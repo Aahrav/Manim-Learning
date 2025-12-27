@@ -125,11 +125,59 @@ class TriangleScene(Scene):
     intersections[(i, (i + 1) % n)]
                 for i in range(n)
         ]
-        # self.play(FadeIn(intersection_dots))   
-        self.play(FadeIn(text))
-        self.play(Create(circle1), Create(circle2), Create(circle3))
-        self.play(Create(arrows_from_centroid))
-        self.play(FadeIn(labels), FadeIn(area_text))
-        
-        self.wait(1)
+        # ---------- STEP 4 : select outer start/end intersection points ----------
+
+        def angle_of(p, c):
+            return np.arctan2(p[1] - c[1], p[0] - c[0])
+
+
+        def is_outward_arc(ci, ri, p_start, p_end, outward_dir):
+            a1 = angle_of(p_start, ci)
+            a2 = angle_of(p_end, ci)
+
+            da = (a2 - a1) % (2 * np.pi)
+            mid_angle = a1 + da / 2
+
+            M = ci + ri * np.array([
+                np.cos(mid_angle),
+                np.sin(mid_angle),
+                0.0
+            ])
+
+            return np.dot(M - ci, outward_dir) > 0
+
+
+        start_points = [None] * n
+        end_points   = [None] * n
+
+        for i in range(n):
+            prev = (i - 1) % n
+            next = (i + 1) % n
+
+            ci = centers[i]
+            ri = radii[i]
+            out = outward_dirs[i]
+
+            prev_pts = intersections[(prev, i)]
+            next_pts = intersections[(i, next)]
+
+            # choose start point (with previous circle)
+            for p in prev_pts:
+                if is_outward_arc(ci, ri, p, next_pts[0], out):
+                    start_points[i] = p
+                    break
+
+            # choose end point (with next circle)
+            for q in next_pts:
+                if is_outward_arc(ci, ri, start_points[i], q, out):
+                    end_points[i] = q
+                    break
+
+            # self.play(FadeIn(intersection_dots))   
+            self.play(FadeIn(text))
+            self.play(Create(circle1), Create(circle2), Create(circle3))
+            self.play(Create(arrows_from_centroid))
+            self.play(FadeIn(labels), FadeIn(area_text))
+            
+            self.wait(1)
     
